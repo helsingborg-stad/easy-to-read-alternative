@@ -6,25 +6,28 @@ class Content
 {
 	public function __construct()
 	{
-		//add_filter('the_content', array($this, 'addLink'));
-
+		$theme = wp_get_theme();
+		if ('Municipio' == $theme->name || 'Municipio' == $theme->parent_theme) {
+			add_filter('accessibility_items', array($this, 'addAccessibility'), 11);
+		}
 		add_filter('the_lead', array($this, 'easyReadingLead'));
 		add_filter('the_content', array($this, 'easyReadingContent'));
 	}
 
-	public function addLink($content)
+	public function addAccessibility($items)
 	{
-		if (get_field('readable_content_select') == true) {
-			$content = '<a href="' . add_query_arg('readable', 'true', get_permalink()) . '">' . __('Easy to read', 'easy-reading') . '</a>';
-	    	$content .= $content;
+		if (! isset($_GET['readable']) && get_field('readable_content_select') == true) {
+			$items[] = '<a href="' . add_query_arg('readable', '1', get_permalink()) . '" class=""><i class="pricon pricon-easy-read"></i> ' . __('Easy to read', 'easy-reading') . '</a>';
+    	} elseif(isset($_GET['readable']) && $_GET['readable'] == '1' && get_field('readable_content_select') == true) {
+    		$items[] = '<a href="' . get_permalink() . '" class=""><i class="pricon pricon-easy-read"></i> ' . __('Default version', 'easy-reading') . '</a>';
     	}
 
-    	return $content;
+    	return $items;
 	}
 
 	public function easyReadingLead($lead)
 	{
-		if (isset($_GET['readable']) && $_GET['readable'] == 'true' && get_field('easy_reading_select') == true) {
+		if (isset($_GET['readable']) && $_GET['readable'] == '1' && get_field('easy_reading_select') == true) {
 			$lead = '';
 			$content = get_field('easy_reading_content');
 			if (strpos($content,  '<!--more-->') !== false) {
@@ -38,7 +41,7 @@ class Content
 
 	public function easyReadingContent($content)
 	{
-		if (isset($_GET['readable']) && $_GET['readable'] == 'true' && get_field('easy_reading_select') == true) {
+		if (isset($_GET['readable']) && $_GET['readable'] == '1' && get_field('easy_reading_select') == true) {
 			$content = get_field('easy_reading_content');
 			if (strpos($content,  '<!--more-->') !== false) {
 				$content_parts = explode('<!--more-->', $content);
