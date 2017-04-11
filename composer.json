@@ -1,6 +1,6 @@
 {
-    "name": "helsingborg-stad/easy-reading",
-    "description": "Adds easy reading capability for content.",
+    "name": "helsingborg-stad/easy-to-read-alternative",
+    "description": "Adds easy to read alternative content version.",
     "license": "GNU",
     "type": "wordpress-theme",
     "authors": [

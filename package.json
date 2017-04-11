@@ -1,21 +1,21 @@
 {
-  "name": "helsingborg-stad/easy-reading",
+  "name": "helsingborg-stad/easy-to-read-alternative",
   "version": "1.0.0",
-  "description": "Adds easy reading capability for content.",
+  "description": "Adds easy to read alternative content version.",
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Svanmark/Wordpress-Plugin-Boilerplate.git"
+    "url": "https://github.com/helsingborg-stad/easy-to-read-alternative"
   },
   "author": "Jonatan Hanson",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Svanmark/Wordpress-Plugin-Boilerplate/issues"
+    "url": "https://github.com/helsingborg-stad/easy-to-read-alternative/issues"
   },
-  "homepage": "https://github.com/Svanmark/Wordpress-Plugin-Boilerplate",
+  "homepage": "https://github.com/helsingborg-stad/easy-to-read-alternative",
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-autoprefixer": "^3.1.0",

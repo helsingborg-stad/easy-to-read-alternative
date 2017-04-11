@@ -49,5 +49,4 @@ class Content
 
 		return $content;
 	}
-
 }

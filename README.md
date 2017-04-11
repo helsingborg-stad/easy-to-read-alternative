@@ -1,4 +1,3 @@
-# Easy reading
+# Easy to read alternative
 
-Adds easy reading capability for content
-# easy-to-read-alternative
+Adds easy to read alternative content version.
