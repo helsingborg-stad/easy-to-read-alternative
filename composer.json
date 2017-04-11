@@ -1,0 +1,21 @@
+{
+    "name": "helsingborg-stad/easy-reading",
+    "description": "Adds easy reading capability for content.",
+    "license": "GNU",
+    "type": "wordpress-theme",
+    "authors": [
+        {
+            "name": "Jonatan Hanson",
+            "email": "jonatan.hanson@hiq.se"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/helsingborg-stad/acf-export-manager.git"
+        }
+    ],
+    "require": {
+        "helsingborg-stad/acf-export-manager": ">=1.0.0"
+    }
+}
