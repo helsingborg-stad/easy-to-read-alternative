@@ -3,7 +3,7 @@
 /**
  * Plugin Name:       Easy reading
  * Plugin URI:
- * Description:       Adds easy reading capability for content
+ * Description:       Adds easy to read alternative content version
  * Version:           1.0.0
  * Author:            Jonatan Hanson
  * Author URI:
@@ -25,8 +25,10 @@ define('EASYREADING_TEMPLATE_PATH', EASYREADING_PATH . 'templates/');
 load_plugin_textdomain('easy-reading', false, plugin_basename(dirname(__FILE__)) . '/languages');
 
 require_once EASYREADING_PATH . 'source/php/Vendor/Psr4ClassLoader.php';
-require_once EASYREADING_PATH . 'vendor/helsingborg-stad/acf-export-manager/src/AcfExportManager.php';
 require_once EASYREADING_PATH . 'Public.php';
+if (! class_exists('\\AcfExportManager\\AcfExportManager')) {
+	require_once EASYREADING_PATH . 'vendor/helsingborg-stad/acf-export-manager/src/AcfExportManager.php';
+}
 
 // Instantiate and register the autoloader
 $loader = new EasyReading\Vendor\Psr4ClassLoader();

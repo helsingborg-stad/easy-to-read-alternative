@@ -15,7 +15,7 @@ class Options
                 'capability'    => 'manage_options'
             ));
 
-        // Create custom ACF location rule. Adds 'easy reading' to selected post types
+        // Create custom ACF location rule. Adds 'easy reading' field to selected post types
         add_filter('acf/location/rule_types', array($this, 'acfLocationRulesTypes'));
         add_filter('acf/location/rule_values/settings', array($this, 'acfLocationRuleValues'));
         add_filter('acf/location/rule_match/settings', array($this, 'acfLocationRulesMatch'), 10, 3);
