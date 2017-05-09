@@ -21,9 +21,9 @@ class Content
 	 */
 	public function addAccessibility($items): array
 	{
-		if (! isset($_GET['readable']) && get_field('readable_content_select') == true) {
+		if (! isset($_GET['readable']) && get_field('easy_reading_select') == true) {
 			$items[] = '<a href="' . add_query_arg('readable', '1', get_permalink()) . '" class=""><i class="pricon pricon-easy-read"></i> ' . __('Easy to read', 'easy-reading') . '</a>';
-    	} elseif(isset($_GET['readable']) && $_GET['readable'] == '1' && get_field('readable_content_select') == true) {
+    	} elseif(isset($_GET['readable']) && $_GET['readable'] == '1' && get_field('easy_reading_select') == true) {
     		$items[] = '<a href="' . get_permalink() . '" class=""><i class="pricon pricon-easy-read"></i> ' . __('Default version', 'easy-reading') . '</a>';
     	}
 
