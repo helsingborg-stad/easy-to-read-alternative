@@ -21,10 +21,13 @@ class Content
 	 */
 	public function addAccessibility($items): array
 	{
+		global $wp;
+		$current_url = home_url(add_query_arg(array(),$wp->request));
+
 		if (! isset($_GET['readable']) && get_field('easy_reading_select') == true) {
-			$items[] = '<a href="' . add_query_arg('readable', '1', get_permalink()) . '" class=""><i class="pricon pricon-easy-read"></i> ' . __('Easy to read', 'easy-reading') . '</a>';
+			$items[] = '<a href="' . add_query_arg('readable', '1', $current_url) . '" class=""><i class="pricon pricon-easy-read"></i> ' . __('Easy to read', 'easy-reading') . '</a>';
     	} elseif(isset($_GET['readable']) && $_GET['readable'] == '1' && get_field('easy_reading_select') == true) {
-    		$items[] = '<a href="' . get_permalink() . '" class=""><i class="pricon pricon-easy-read"></i> ' . __('Default version', 'easy-reading') . '</a>';
+    		$items[] = '<a href="' . $current_url . '" class=""><i class="pricon pricon-easy-read"></i> ' . __('Default version', 'easy-reading') . '</a>';
     	}
 
     	return $items;
