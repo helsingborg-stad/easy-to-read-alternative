@@ -10,8 +10,8 @@ class Content
 		if ('Municipio' == $theme->name || 'Municipio' == $theme->parent_theme) {
 			add_filter('accessibility_items', array($this, 'addAccessibility'), 11);
 		}
-		add_filter('the_lead', array($this, 'easyReadingLead'));
-		add_filter('the_content', array($this, 'easyReadingContent'));
+		add_filter('the_lead', array($this, 'easyReadingLead'), 9);
+		add_filter('the_content', array($this, 'easyReadingContent'), 11);
 	}
 
 	/**
