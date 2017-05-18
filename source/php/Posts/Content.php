@@ -10,8 +10,8 @@ class Content
 		if ('Municipio' == $theme->name || 'Municipio' == $theme->parent_theme) {
 			add_filter('accessibility_items', array($this, 'addAccessibility'), 11);
 		}
-		add_filter('the_lead', array($this, 'easyReadingLead'), 9);
-		add_filter('the_content', array($this, 'easyReadingContent'), 11);
+		add_filter('the_lead', array($this, 'easyReadingLead'), 11);
+		add_filter('the_content', array($this, 'easyReadingContent'), 10);
 	}
 
 	/**
@@ -34,31 +34,14 @@ class Content
 	}
 
 	/**
-	 * Switch content lead to alternate version
+	 * Remove the lead
 	 * @param  string $lead Default lead
 	 * @return string       Modified lead
 	 */
 	public function easyReadingLead($lead)
 	{
-		global $post;
-
-		if (isset($_GET['readable']) && $_GET['readable'] == '1' && get_field('easy_reading_select') == true && is_object($post) && isset($post->post_content)) {
-			$post_content = $post->post_content;
-			if (strpos($post_content,  '<!--more-->') !== false) {
-				$content_parts = explode('<!--more-->', $post_content);
-				$post_lead  = $content_parts[0];
-			}
-			$post_lead 		= preg_replace('/[^a-z]/i', '', sanitize_text_field($post_lead));
-			$sanitized_lead = preg_replace('/[^a-z]/i', '', sanitize_text_field($lead));
-
-			if ($post_lead == $sanitized_lead) {
-				$lead = '';
-				$content = get_field('easy_reading_content');
-				if (strpos($content,  '<!--more-->') !== false) {
-					$content_parts = explode('<!--more-->', $content);
-					$lead = wp_strip_all_tags($content_parts[0]);
-				}
-			}
+		if (isset($_GET['readable']) && $_GET['readable'] == '1' && get_field('easy_reading_select') == true && in_the_loop() && is_main_query()) {
+			return '';
 		}
 
 		return $lead;
@@ -73,7 +56,7 @@ class Content
 	{
 		global $post;
 
-		if (isset($_GET['readable']) && $_GET['readable'] == '1' && get_field('easy_reading_select') == true && is_object($post) && isset($post->post_content)) {
+		if (isset($_GET['readable']) && $_GET['readable'] == '1' && get_field('easy_reading_select') == true && is_object($post) && isset($post->post_content) && in_the_loop() && is_main_query()) {
 			$post_content = $post->post_content;
 			if (strpos($post_content,  '<!--more-->') !== false) {
 				$content_parts = explode('<!--more-->', $post_content);
@@ -86,7 +69,7 @@ class Content
 				$content = get_field('easy_reading_content');
 				if (strpos($content,  '<!--more-->') !== false) {
 					$content_parts = explode('<!--more-->', $content);
-					$content = $content_parts[1];
+					$content = '<p class="lead">' . sanitize_text_field($content_parts[0]) . '</p>' . $content_parts[1];
 				}
 			}
 		}
