@@ -57,9 +57,9 @@ class Options
 
         if ($post_types) {
             if ($rule['operator'] == "==") {
-                $match = (in_array($options['post_type'], $post_types) && $options['post_id'] > 0);
+                $match = (isset($options['post_type']) && in_array($options['post_type'], $post_types) && $options['post_id'] > 0);
             } elseif ($rule['operator'] == "!=") {
-                $match = (! in_array($options['post_type'], $post_types) && $options['post_id'] > 0);
+                $match = (isset($options['post_type']) && !in_array($options['post_type'], $post_types) && $options['post_id'] > 0);
             }
         }
 
