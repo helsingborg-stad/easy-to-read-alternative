@@ -61,8 +61,8 @@ class Content
     public function easyReadingLead($lead): string
     {
         if($this->_isShowable()) {
-            apply_filters('the_content', null);
-            return '';
+			// Ugly but works...
+            return apply_filters('the_content', null);
         }
 
         return $lead;
