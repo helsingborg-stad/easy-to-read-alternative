@@ -94,7 +94,6 @@ class Content
 
     /**
      * Set isReadable property via query string param
-     * @return bool
      */
     public function setIsReadable(): void
     {
