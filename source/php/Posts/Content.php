@@ -97,7 +97,7 @@ class Content
      */
     public function setIsReadable(): void
     {
-        $queryParam = substr($_GET['readable'], 0, 1);
+        $queryParam = isset($_GET['readable']) ? substr($_GET['readable'], 0, 1) : false;
         $this->_isReadable = $queryParam === '1' ? true : false;
     }
 
