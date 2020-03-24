@@ -59,8 +59,8 @@ class Content
 		if (isset($_GET['readable']) && $_GET['readable'] == '1' && get_field('easy_reading_select') == true && is_object($post) && isset($post->post_content) && in_the_loop() && is_main_query()) {
 			$post_content = $post->post_content;
 			if (strpos($post_content,  '<!--more-->') !== false) {
-				$content_parts = explode('<!--more-->', $post_content);
-				$post_content  = $content_parts[1];
+        $content_parts = explode('<!--more-->', $post_content, 0);
+        $post_content  = $content_parts[0];
 			}
 			$post_content 	   = preg_replace('/[^a-z]/i', '', sanitize_text_field($post_content));
 			$sanitized_content = preg_replace('/[^a-z]/i', '', sanitize_text_field($content));
