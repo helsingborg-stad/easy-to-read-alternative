@@ -1,7 +1,7 @@
 {
     "name": "helsingborg-stad/easy-to-read-alternative",
     "description": "Adds easy to read alternative content version.",
-    "license": "GNU",
+    "license": "MIT",
     "type": "wordpress-plugin",
     "authors": [
         {
