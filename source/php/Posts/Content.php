@@ -25,6 +25,7 @@ class Content
     {
         global $wp;
         $current_url = home_url(add_query_arg(array(), $wp->request));
+        $items = []; 
 
         if (! isset($_GET['readable']) && get_field('easy_reading_select') == true) {
             $items[] = '<a href="' . add_query_arg('readable', '1', $current_url) . '" class=""><i class="pricon pricon-easy-read"></i> ' . __('Easy to read', 'easy-reading') . '</a>';
