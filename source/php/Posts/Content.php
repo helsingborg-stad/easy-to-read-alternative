@@ -26,7 +26,13 @@ class Content
         global $wp;
         $current_url = home_url(add_query_arg(array(), $wp->request));
 
-        if (! isset($_GET['readable']) && get_field('easy_reading_select') == true) {
+        //Define as array, if not set
+        if(!is_array()) {
+            $items = []; 
+        }
+        
+        //Return alternative to show
+        if (!isset($_GET['readable']) && get_field('easy_reading_select') == true) {
             $items[] =  array(
                 'icon' => 'text_fields',
                 'href' => add_query_arg('readable', '1', $current_url),
