@@ -25,12 +25,19 @@ class Content
     {
         global $wp;
         $current_url = home_url(add_query_arg(array(), $wp->request));
-        $items = []; 
 
         if (! isset($_GET['readable']) && get_field('easy_reading_select') == true) {
-            $items[] = '<a href="' . add_query_arg('readable', '1', $current_url) . '" class=""><i class="pricon pricon-easy-read"></i> ' . __('Easy to read', 'easy-reading') . '</a>';
+            $items[] =  array(
+                'icon' => 'text_fields',
+                'href' => add_query_arg('readable', '1', $current_url),
+                'text' => __('Easy to read', 'easy-reading')
+            );
         } elseif (isset($_GET['readable']) && $_GET['readable'] == '1' && get_field('easy_reading_select') == true) {
-            $items[] = '<a href="' . remove_query_arg('readable', $current_url) . '" class=""><i class="pricon pricon-easy-read"></i> ' . __('Default version', 'easy-reading') . '</a>';
+            $items[] =  array(
+                'icon' => 'text_fields',
+                'href' => remove_query_arg('readable', $current_url),
+                'text' => __('Default version', 'easy-reading')
+            );
         }
 
         return $items;
