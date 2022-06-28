@@ -17,5 +17,20 @@
     ],
     "require": {
         "helsingborg-stad/acf-export-manager": ">=1.0.0"
+    },
+    "extra" : {
+        "builder": {
+            "commands": [
+                "composer install --prefer-dist --no-progress"
+            ],
+            "removables": [
+                ".git",
+                ".gitignore",
+                ".github",
+                "build.php",
+                "composer.json",
+                "composer.lock"
+            ]
+        }
     }
 }
