@@ -10,7 +10,7 @@ class Content
     {
         $theme = wp_get_theme();
         if ('Municipio' == $theme->name || 'Municipio' == $theme->parent_theme) {
-            add_filter('accessibility_items', array($this, 'addAccessibility'), 11);
+            add_filter('Municipio/Accessibility/Items', array($this, 'addAccessibility'), 11);
         }
 
         add_filter('the_post', array($this, 'replacePostContent'), 9);
