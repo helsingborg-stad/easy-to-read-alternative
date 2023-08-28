@@ -6,9 +6,12 @@ if (php_sapi_name() !== 'cli') {
 }
 
 // Any command needed to run and build plugin assets when newly cheched out of repo.
-$buildCommands = [
-    'composer install --prefer-dist --no-progress'
-];
+$buildCommands = [];
+
+//Add composer build, if flag --no-composer is undefined.
+if(is_array($argv) && !in_array('--no-composer', $argv)) {
+    $buildCommands[] = 'composer install --prefer-dist --no-progress --no-dev'; 
+}
 
 // Files and directories not suitable for prod to be removed.
 $removables = [
@@ -17,7 +20,12 @@ $removables = [
     '.github',
     'build.php',
     'composer.json',
-    'composer.lock'
+    'composer.lock',
+    'node_modules',
+    'package.json',
+    'package-lock.json',
+    '.vscode',
+    'webpack.config.js'
 ];
 
 $dirName = basename(dirname(__FILE__));
