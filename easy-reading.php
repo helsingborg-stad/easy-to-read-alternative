@@ -26,8 +26,10 @@ load_plugin_textdomain('easy-reading', false, plugin_basename(dirname(__FILE__))
 
 require_once EASYREADING_PATH . 'source/php/Vendor/Psr4ClassLoader.php';
 require_once EASYREADING_PATH . 'Public.php';
-if (! class_exists('\\AcfExportManager\\AcfExportManager')) {
-	require_once EASYREADING_PATH . 'vendor/helsingborg-stad/acf-export-manager/src/AcfExportManager.php';
+if (!class_exists('\\AcfExportManager\\AcfExportManager')) {
+    if(file_exists( EASYREADING_PATH . 'vendor/helsingborg-stad/acf-export-manager/src/AcfExportManager.php')) {
+    	require_once EASYREADING_PATH . 'vendor/helsingborg-stad/acf-export-manager/src/AcfExportManager.php';
+    }
 }
 
 // Instantiate and register the autoloader
