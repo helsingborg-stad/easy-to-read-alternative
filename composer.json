@@ -15,6 +15,11 @@
             "url": "https://github.com/helsingborg-stad/acf-export-manager.git"
         }
     ],
+    "autoload": {
+        "psr-4": {
+          "EasyReading\\": "source/php/"
+        }
+    },
     "require": {
         "helsingborg-stad/acf-export-manager": ">=1.0.0"
     }

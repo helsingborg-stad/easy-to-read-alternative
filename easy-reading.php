@@ -24,19 +24,12 @@ define('EASYREADING_TEMPLATE_PATH', EASYREADING_PATH . 'templates/');
 
 load_plugin_textdomain('easy-reading', false, plugin_basename(dirname(__FILE__)) . '/languages');
 
-require_once EASYREADING_PATH . 'source/php/Vendor/Psr4ClassLoader.php';
-require_once EASYREADING_PATH . 'Public.php';
-if (!class_exists('\\AcfExportManager\\AcfExportManager')) {
-    if(file_exists( EASYREADING_PATH . 'vendor/helsingborg-stad/acf-export-manager/src/AcfExportManager.php')) {
-    	require_once EASYREADING_PATH . 'vendor/helsingborg-stad/acf-export-manager/src/AcfExportManager.php';
-    }
+// Autoload from plugin
+if (file_exists(EASYREADING_PATH . 'vendor/autoload.php')) {
+    require_once EASYREADING_PATH . 'vendor/autoload.php';
 }
 
-// Instantiate and register the autoloader
-$loader = new EasyReading\Vendor\Psr4ClassLoader();
-$loader->addPrefix('EasyReading', EASYREADING_PATH);
-$loader->addPrefix('EasyReading', EASYREADING_PATH . 'source/php/');
-$loader->register();
+require_once EASYREADING_PATH . 'Public.php';
 
 // Acf auto import and export
 $acfExportManager = new AcfExportManager\AcfExportManager();
