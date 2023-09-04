@@ -32,14 +32,16 @@ if (file_exists(EASYREADING_PATH . 'vendor/autoload.php')) {
 require_once EASYREADING_PATH . 'Public.php';
 
 // Acf auto import and export
-$acfExportManager = new AcfExportManager\AcfExportManager();
-$acfExportManager->setTextdomain('easy-reading');
-$acfExportManager->setExportFolder(EASYREADING_PATH . 'source/php/AcfFields/');
-$acfExportManager->autoExport(array(
-    'easy-reading' 			=> 'group_58eb4fce51bb7',
-    'easy-reading-options' 	=> 'group_58eb9450b0a9f',
-));
-$acfExportManager->import();
+add_action('plugins_loaded', function () {
+    $acfExportManager = new AcfExportManager\AcfExportManager();
+    $acfExportManager->setTextdomain('easy-reading');
+    $acfExportManager->setExportFolder(EASYREADING_PATH . 'source/php/AcfFields/');
+    $acfExportManager->autoExport(array(
+        'easy-reading' 			=> 'group_58eb4fce51bb7',
+        'easy-reading-options' 	=> 'group_58eb9450b0a9f',
+    ));
+    $acfExportManager->import();
+});
 
 // Start application
 new EasyReading\App();
