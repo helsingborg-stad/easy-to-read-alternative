@@ -17,10 +17,11 @@
     ],
     "autoload": {
         "psr-4": {
-          "EasyReading\\": "source/php/"
+            "EasyReading\\": "source/php/"
         }
     },
     "require": {
         "helsingborg-stad/acf-export-manager": ">=1.0.0"
-    }
+    },
+    "version": "2.0.0"
 }
