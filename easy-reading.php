@@ -4,7 +4,7 @@
  * Plugin Name:       Easy reading
  * Plugin URI:
  * Description:       Adds easy to read alternative content version
- * Version: 2.0.0
+ * Version: 3.0.2
  * Author:            Jonatan Hanson
  * Author URI:
  * License:           MIT
