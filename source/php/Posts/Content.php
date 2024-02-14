@@ -44,7 +44,6 @@ class Content
         //Return alternative to show
         if (!isset($_GET['readable']) && get_field('easy_reading_select', $postId) == true) {
             $items[] =  array(
-                'icon' => 'text_fields',
                 'href' => add_query_arg('readable', '1', $current_url),
                 'text' => __('Easy to read', 'easy-reading')
             );
@@ -53,7 +52,6 @@ class Content
             get_field('easy_reading_select', $postId) == true
         ) {
             $items[] =  array(
-                'icon' => 'text_fields',
                 'href' => remove_query_arg('readable', $current_url),
                 'text' => __('Default version', 'easy-reading')
             );
