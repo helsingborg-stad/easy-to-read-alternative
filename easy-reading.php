@@ -22,7 +22,9 @@ define('EASYREADING_PATH', plugin_dir_path(__FILE__));
 define('EASYREADING_URL', plugins_url('', __FILE__));
 define('EASYREADING_TEMPLATE_PATH', EASYREADING_PATH . 'templates/');
 
-load_plugin_textdomain('easy-reading', false, plugin_basename(dirname(__FILE__)) . '/languages');
+add_action('init', function() {
+    load_plugin_textdomain('easy-reading', false, plugin_basename(dirname(__FILE__)) . '/languages');
+});
 
 // Autoload from plugin
 if (file_exists(EASYREADING_PATH . 'vendor/autoload.php')) {
