@@ -40,7 +40,7 @@ class Content
             }
 
             $postType = get_queried_object();
-            if (get_class($postType) === 'WP_Post_Type') {
+            if ($postType instanceof \WP_Post_Type) {
                 $postId = get_option('page_for_' . $postType->name);
             }
 
