@@ -19,10 +19,10 @@ class Content
         add_filter('the_content', array($this, 'easyReadingContent'), 10);
     }
 
-    public function replacePostObjectContent($content, $postObject): string
+    public function replacePostObjectContent(string $content, $postObject): string
     {
         $isReadableRequest = isset($_GET['readable']) && $_GET['readable'] === '1';
-        
+
         if (!$isReadableRequest) {
             return $content;
         }
