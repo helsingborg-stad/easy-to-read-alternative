@@ -49,6 +49,10 @@ class Content
             }
         }
 
+        if (get_field('easy_reading_select', $postId) == false) {
+            return $content;
+        }
+
         $replacement = \get_field('easy_reading_content', $postId);
 
         return empty($replacement) ? $content : $replacement;
