@@ -13,9 +13,49 @@ class Content
             add_filter('Municipio/Accessibility/Items', array($this, 'addAccessibility'), 11);
         }
 
+        add_filter('Municipio/PostObject/getContent', array($this, 'replacePostObjectContent'), 10, 2);
         add_filter('the_post', array($this, 'replacePostContent'), 9);
         add_filter('the_lead', array($this, 'easyReadingLead'), 10);
         add_filter('the_content', array($this, 'easyReadingContent'), 10);
+    }
+
+    public function replacePostObjectContent(string $content, $postObject): string
+    {
+        $isReadableRequest = isset($_GET['readable']) && $_GET['readable'] === '1';
+
+        if (!$isReadableRequest) {
+            return $content;
+        }
+
+        if (!is_single() && !is_post_type_archive()) {
+            return $content;
+        }
+
+        $postId = $this->getPostId();
+        $currentPostId = isset($postObject->ID) ? (int) $postObject->ID : (int) get_the_ID();
+
+        if ($currentPostId !== (int) $postId) {
+            if (!is_post_type_archive()) {
+                return $content;
+            }
+
+            $postType = get_queried_object();
+            if ($postType instanceof \WP_Post_Type) {
+                $postId = get_option('page_for_' . $postType->name);
+            }
+
+            if (!$postId) {
+                return $content;
+            }
+        }
+
+        if (get_field('easy_reading_select', $postId) == false) {
+            return $content;
+        }
+
+        $replacement = \get_field('easy_reading_content', $postId);
+
+        return empty($replacement) ? $content : $replacement;
     }
 
     /**
