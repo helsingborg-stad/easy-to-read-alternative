@@ -4,8 +4,6 @@ namespace EasyReading\Posts;
 
 class Content
 {
-    private $contentModified = false;
-
     public function __construct()
     {
         $theme = wp_get_theme();
@@ -148,8 +146,6 @@ class Content
                 $content_parts = explode('<!--more-->', $content);
                 $content = '<p class="lead">' . sanitize_text_field($content_parts[0]) . '</p>' . $content_parts[1];
             }
-
-            $this->contentModified = true;
         }
 
         return $content;
@@ -162,10 +158,6 @@ class Content
      */
     public function shouldDisplay()
     {
-
-        if($this->contentModified == true) {
-            return false;
-        }
 
         if (empty($this->getPostId())) {
             return false;
