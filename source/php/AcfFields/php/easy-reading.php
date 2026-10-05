@@ -57,7 +57,7 @@
             0 => array(
                 'param' => 'settings',
                 'operator' => '==',
-                'value' => '0',
+                'value' => 'post_types',
             ),
         ),
     ),

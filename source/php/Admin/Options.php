@@ -41,7 +41,9 @@ class Options
      */
     public function acfLocationRuleValues($choices)
     {
-        return $choices['post_types'] = "Selected";
+        $choices['post_types'] = 'Selected';
+
+        return $choices;
     }
 
     /**
@@ -55,11 +57,13 @@ class Options
     {
         $post_types = get_field('easy_reading_posttypes', 'option');
 
-        if ($post_types) {
+        if (is_array($post_types) && isset($options['post_type'])) {
+            $isSelectedPostType = in_array($options['post_type'], $post_types, true);
+
             if ($rule['operator'] == "==") {
-                $match = (isset($options['post_type']) && in_array($options['post_type'], $post_types) && $options['post_id'] > 0);
+                $match = $isSelectedPostType;
             } elseif ($rule['operator'] == "!=") {
-                $match = (isset($options['post_type']) && !in_array($options['post_type'], $post_types) && $options['post_id'] > 0);
+                $match = !$isSelectedPostType;
             }
         }
 
