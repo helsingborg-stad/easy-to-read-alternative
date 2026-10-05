@@ -1,3 +1,3 @@
-# Easy to read alternative
+# Easy to read alternative [DEPRECATED]
 
-Adds easy to read alternative content version.
+We are moving this into Municipio since it is a core feature. 
